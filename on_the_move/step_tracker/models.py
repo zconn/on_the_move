@@ -8,5 +8,8 @@ class Steps(models.Model):
     minutes = models.IntegerField(blank=True)
     steps = models.IntegerField(blank=False)
 
+    class Meta:
+        verbose_name_plural = "Steps"
+
     def __str__(self):
         return self.entry_date
