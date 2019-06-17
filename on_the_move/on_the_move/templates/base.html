@@ -1,0 +1,20 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>On The Move</title>
+        <link type="text/css" rel="stylesheet" href="{% static 'main.css' %}">
+    </head>
+    <body>
+      <div id="header">  {# header begins here #}
+        <ul id="control-bar">
+          STATIC USERNAME FOR THE TIME BEING, UPDATE SOON
+        </ul>
+     </div>
+        <div id="container">
+            <div id="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </body>
+</html>
