@@ -2,4 +2,49 @@
 
 {% block content %}
 <h1>Enter Steps Here</h1>
+Today is {% now "M d, Y" %}<br>
+You have entered XXXXX steps for today.
+<br>
+<br>
+<div class="step_entry_class">
+    <form method="POST">
+        {% csrf_token %}
+        <input type="radio" onclick="javascript:input_type_change('pedometer')" name="entry_type" value="pedometer" checked>Pedometer<br>
+        <input type="radio" onclick="javascript:input_type_change('activity')" name="entry_type" value="activity">Activity<br>
+        <br>
+        <label for="steps">Steps:</label>
+        <input id="steps" type="text" name="steps"><br>
+        <label for="activity">Activity:</label>
+        <select id="activity" name="activity" onchange="update_steps()" disabled=true>
+            <option value="walking">Walking</option>
+            <option value="running">Running</option>
+            <option value="jumprope">Jump Rope</option>
+            </select>
+        <br>
+        <label for="duration">Duration(mins):</label>
+        <input id="duration" type="text" name="duration" onkeyup="update_steps()" disabled=true><br>
+        <input type="submit" value="OK">
+    </form>
+</div>
+<script>
+function input_type_change(type) {
+    if (type=='pedometer'){
+        document.getElementById('steps').disabled = false;
+        document.getElementById('activity').disabled = true;
+        document.getElementById('duration').value = 0;
+        document.getElementById('duration').disabled = true;
+    }
+    if (type=='activity'){
+        document.getElementById('steps').value = 0;
+        document.getElementById('steps').disabled = true;
+        document.getElementById('activity').disabled = false;
+        document.getElementById('duration').disabled = false;
+    }
+}
+function update_steps() {
+    document.getElementById('steps').disabled = false;
+    document.getElementById('steps').value = document.getElementById('duration').value * 100
+    document.getElementById('steps').disabled = true;
+}
+</script>
 {% endblock %}
