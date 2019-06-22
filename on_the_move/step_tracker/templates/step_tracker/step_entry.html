@@ -3,12 +3,14 @@
 {% block content %}
 <h1>Enter Steps Here</h1>
 Today is {% now "M d, Y" %}<br>
-You have entered XXXXX steps for today.
+You have entered {{ steps_today }} steps for today.
 <br>
 <br>
 <div class="step_entry_class">
     <form method="POST">
         {% csrf_token %}
+        <label for="date">Entry Date:</label><input type='date' id='date' name='date'>
+        <br><br>
         <input type="radio" onclick="javascript:input_type_change('pedometer')" name="entry_type" value="pedometer" checked>Pedometer<br>
         <input type="radio" onclick="javascript:input_type_change('activity')" name="entry_type" value="activity">Activity<br>
         <br>
